@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+
+<!-- Импортируем макрос render_field из файла _formhelpers.html.-->
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+    <h1>Редактировать пользователя</h1>
+
+    
+    <form method="POST">
+
+        <!-- Скрытые поля формы-->
+        {{ form.hidden_tag() }}
+
+        <!-- Поле для ввода имени пользователя -->
+        {{ render_field(form.first_name) }}
+
+        <!-- Поле для ввода фамилии пользователя -->
+        {{ render_field(form.last_name) }}
+
+        <!-- Поле для ввода отчества пользователя -->
+        {{ render_field(form.middle_name) }}
+
+        <!-- Выпадающий список для выбора роли пользователя -->
+        {{ render_field(form.role_id) }}
+
+        
+        <button type="submit" class="btn btn-primary">Обновить пользователя</button>
+    </form>
+{% endblock %}
