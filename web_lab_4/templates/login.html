@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Вход</h2>
+
+
+  <form method="post">
+
+      <!-- Скрытые поля формы-->
+      {{ form.hidden_tag() }}
+
+      <!-- Поле ввода логина -->
+      <div class="form-group">
+          {{ form.username.label }}  <!-- Метка поля логина -->
+          {{ form.username(class="form-control") }}  <!-- Само поле ввода логина -->
+          
+          <!-- Отображение ошибок, если логин введён некорректно -->
+          {% if form.username.errors %}
+              <ul class="errors">
+                  {% for error in form.username.errors %}
+                      <li>{{ error }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
+      </div>
+
+      <!-- Поле ввода пароля -->
+      <div class="form-group">
+          {{ form.password.label }}  <!-- Метка поля пароля -->
+          {{ form.password(class="form-control") }}  <!-- Поле ввода пароля -->
+
+          <!-- Отображение ошибок, если пароль введён некорректно -->
+          {% if form.password.errors %}
+              <ul class="errors">
+                  {% for error in form.password.errors %}
+                      <li>{{ error }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
+      </div>
+
+      <!-- Чекбокс "Запомнить меня" -->
+      <div class="form-check">
+          {{ form.remember_me(class="form-check-input", id="rememberMe") }}  <!-- Сам чекбокс -->
+          {{ form.remember_me.label(class="form-check-label", for="rememberMe") }}  <!-- Метка для чекбокса -->
+      </div>
+
+      <!-- Кнопка отправки формы (авторизация пользователя) -->
+      {{ form.submit(class="btn btn-primary", value="Войти") }}
+
+  </form>
+{% endblock %}
